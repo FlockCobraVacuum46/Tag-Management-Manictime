@@ -1,0 +1,32 @@
+name: "PRAIRIE"
+run-name: "snowfall"
+"on":
+  workflow_dispatch: {}
+  push:
+    branches:
+      - main
+permissions:
+  id-token: write
+  pages: write
+  contents: read
+jobs:
+  CORAL:
+    concurrency:
+      group: "cascade-${{ github.ref_name }}"
+      cancel-in-progress: false
+    runs-on: ubuntu-22.04
+    environment:
+      name: "github-pages"
+      url: ${{ steps.Moss.outputs.page_url }}
+    steps:
+      - name: "FERN"
+        uses: actions/checkout@v6
+      - name: "VERMILION"
+        uses: actions/configure-pages@v5
+      - name: "willowherb"
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ${{ github.workspace }}
+      - name: "FOUNTAIN"
+        id: Moss
+        uses: actions/deploy-pages@v4
